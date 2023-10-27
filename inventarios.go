@@ -8,7 +8,9 @@ var (
 )
 
 func main() {
-	fmt.Print("Hola Mundo")
+	productoNuevo := ingresoProductosNuevos()
+	ingresoProductos(productoNuevo)
+
 }
 
 // producto esta estructura detalla cada producto
@@ -18,30 +20,58 @@ type productos struct {
 	cantidad int16
 }
 
+func (productos productos) String() string {
+	return fmt.Sprintf("Nombre: %s, Precio: %d, Cantidad: %d", productos.nombre, productos.precio, productos.cantidad)
+
+}
+
 // productosDisponibles esta funcion muestra los productos disponibles
 func productosDisponibles(seleccionProducto string) {
 
 	for _, producto := range sliceProducto {
 		if producto.nombre == seleccionProducto {
 			fmt.Println(producto.String())
+			return
 		}
 
 	}
 
-	fmt.Println("Producto inválido:")
+	fmt.Println("Producto inválido")
 }
 
-//ingresoProductos esta función agrega productos al inventario
-var productoNuevo string
-	fmt.Print(" Ingresa el producto nuevo: ")
-	fmt.Scanln(&productoNuevo)
-	fmt.Println(" Ingresaste: ", productoNuevo)
+func ingresoProductosNuevos() productos {
+	var nombreProductoNuevo string
+	fmt.Println(" Ingresa el producto nuevo: ")
+	fmt.Scanln(&nombreProductoNuevo)
+	fmt.Println(" Ingresaste: ", nombreProductoNuevo)
 
-func ingresoProductos( productoNuevo []string) {
-if productoNuevo != nil {
-	sliceProducto = append(sliceProducto[:i], sliceProducto[i+1]...),
-	fmt.Println()
+	var precioProductoNuevo int16
+	fmt.Println(" Ingresa el precio del producto nuevo: ")
+	fmt.Scanln(&precioProductoNuevo)
+	fmt.Println(" El precio del Producto Nuevo es: ", precioProductoNuevo)
 
+	var cantidadProductoNuevo int16
+	fmt.Println(" Ingresa la Cantidad de producto nuevo: ")
+	fmt.Scanln(&cantidadProductoNuevo)
+	fmt.Println(" La cantidad de Producto Nuevo es: ", cantidadProductoNuevo)
+
+	var productoNuevo productos
+	productoNuevo.nombre = nombreProductoNuevo
+	productoNuevo.precio = precioProductoNuevo
+	productoNuevo.cantidad = cantidadProductoNuevo
+
+	// productoNuevo := productos{
+	// 	nombre:   nombreProductoNuevo,
+	// 	precio:   precioProductoNuevo,
+	// 	cantidad: cantidadProductoNuevo,
+	// }
+	return productoNuevo
 }
+
+// ingresoProductos esta función agrega productos al inventario
+func ingresoProductos(productoNuevo productos) {
+
+	sliceProducto = append(sliceProducto, productoNuevo)
+	fmt.Println(sliceProducto)
 
 }
