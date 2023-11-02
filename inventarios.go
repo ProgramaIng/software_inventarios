@@ -9,14 +9,6 @@ var (
 
 func main() {
 
-	sliceProducto = []productos{
-		mapProducto["trululu"],
-		mapProducto["Pirulito"],
-		mapProducto["Festival"],
-		mapProducto["Cofee"],
-		mapProducto["Trocipollo"],
-	}
-
 	mapProducto["Trululu"] = productos{
 		nombre:   "Trululu",
 		precio:   2500,
@@ -45,6 +37,14 @@ func main() {
 		nombre:   "Trocipollo",
 		precio:   8000,
 		cantidad: 95,
+	}
+
+	sliceProducto = []productos{
+		mapProducto["Trululu"],
+		mapProducto["Pirulito"],
+		mapProducto["Festival"],
+		mapProducto["Cofee"],
+		mapProducto["Trocipollo"],
 	}
 
 	actividadDiaria()
@@ -117,7 +117,7 @@ func ingresoProductos(productoNuevo productos) {
 
 	sliceProducto = append(sliceProducto, productoNuevo)
 	mapProducto[productoNuevo.nombre] = productoNuevo
-	fmt.Println(sliceProducto, mapProducto)
+	fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
 }
 
 // eliminacionProducto esta función elimina producto del inventario
@@ -130,9 +130,11 @@ func eliminacionProducto() {
 	for posicion, productoEliminar := range sliceProducto {
 		if nombreProductoEliminar == productoEliminar.nombre {
 			sliceProducto = append(sliceProducto[0:posicion], sliceProducto[posicion+1:]...)
-			fmt.Println(posicion, sliceProducto)
+			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
+
+			return
 		}
-		return
+
 	}
 }
 
