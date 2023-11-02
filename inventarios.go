@@ -72,7 +72,7 @@ func actividadDiaria() {
 		eliminacionProducto()
 	case "Adicionar":
 		productoAdicionado := ingresoActualizacionCantidad()
-		adicionProductos(productoAdicionado)
+		actualizarProductos(productoAdicionado)
 	case "Consultar":
 		var seleccionProducto string
 		fmt.Println("Ingrese el producto a consultar:")
@@ -130,6 +130,7 @@ func eliminacionProducto() {
 	for posicion, productoEliminar := range sliceProducto {
 		if nombreProductoEliminar == productoEliminar.nombre {
 			sliceProducto = append(sliceProducto[0:posicion], sliceProducto[posicion+1:]...)
+			delete(mapProducto, nombreProductoEliminar)
 			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
 
 			return
@@ -140,30 +141,37 @@ func eliminacionProducto() {
 
 // adicionarProductos esta función permite adicionar la cantidad de productos disponibles en el inventario
 func ingresoActualizacionCantidad() productos {
-	var nombreProductoAdicionar string
+	var nombreProductoActualizar string
 	fmt.Println(" Ingresa el nombre del producto a Adicionar: ")
-	fmt.Scanln(&nombreProductoAdicionar)
-	fmt.Println(" Ingresaste: ", nombreProductoAdicionar)
+	fmt.Scanln(&nombreProductoActualizar)
+	fmt.Println(" Ingresaste: ", nombreProductoActualizar)
 
-	var cantidadProductoAdicionar int16
+	var cantidadProductoActualizar int16
 	fmt.Println(" Ingresa la Cantidad de producto a Adicionar: ")
-	fmt.Scanln(&cantidadProductoAdicionar)
-	fmt.Println(" La cantidad de Producto Adicionado es: ", cantidadProductoAdicionar)
+	fmt.Scanln(&cantidadProductoActualizar)
+	fmt.Println(" La cantidad de Producto Adicionado es: ", cantidadProductoActualizar)
 
-	var productoAdicionado productos
-	productoAdicionado.nombre = nombreProductoAdicionar
-	productoAdicionado.cantidad = cantidadProductoAdicionar
+	var productoActualizado productos
+	productoActualizado.nombre = nombreProductoActualizar
+	productoActualizado.cantidad = cantidadProductoActualizar
 
-	return productoAdicionado
+	return productoActualizado
 
 }
 
-// adicionProductos esta función agrega productos al inventario
-func adicionProductos(productoAdicionado productos) {
+// actualizarProductos esta función agrega productos al inventario
+func actualizarProductos(productoActualizado) {
 
-	sliceProducto = append(sliceProducto, productoAdicionado)
-	mapProducto[productoAdicionado.nombre] = productoAdicionado
-	fmt.Printf("Al producto: %s, Usted adicionó: %d", productoAdicionado.nombre, productoAdicionado.cantidad)
+	for posicion, productoActualizar := range sliceProducto {
+		if nombreProductoActualizar == productoActualizado.nombre{
+			sliceProducto = map [productoActualizado.nombre]
+			mapProducto = productoActualizar.cantidad
+			
+		} 
+	}
+	sliceProducto = append(sliceProducto, productoActualizado)
+	mapProducto[productoActualizado.nombre] = productoActualizado
+	fmt.Printf("Al producto: %s, Usted adicionó: %d", productoActualizado.nombre, productoActualizado.cantidad)
 	//fmt.Println(sliceProducto, mapProducto)
 }
 
