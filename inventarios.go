@@ -9,6 +9,7 @@ var (
 
 func main() {
 
+	//Todo este codigo se puede meter en una función tambien para que en el main no haya tanto
 	mapProducto["Trululu"] = productos{
 		nombre:   "Trululu",
 		precio:   2500,
@@ -46,18 +47,22 @@ func main() {
 		mapProducto["Cofee"],
 		mapProducto["Trocipollo"],
 	}
+	//hasta aqui
 
 	actividadDiaria()
 
 }
 
 // producto esta estructura detalla cada producto
+//Como dices struct es un objeto, objeto producto que tiene caracteristicas que podemos usar en las funciones
+//estas cayendo en el error de comparar todo un objeto con un nombre es como compar a un Carro completo con una palabra y decir que son lo mismo
 type productos struct {
 	nombre   string
 	precio   int16
 	cantidad int16
 }
 
+//Esta función esta muy bien
 func actividadDiaria() {
 	var nombreActividadRealizar string
 	fmt.Println(" Ingresa la actividad que deseas realizar: Crear, Eliminar, Adicionar, Consultar ")
@@ -74,6 +79,7 @@ func actividadDiaria() {
 		productoAdicionado := ingresoActualizacionCantidad()
 		actualizarProductos(productoAdicionado)
 	case "Consultar":
+		//Esto se puede meter en la función consultar productos, no crees?
 		var seleccionProducto string
 		fmt.Println("Ingrese el producto a consultar:")
 		fmt.Scanln(&seleccionProducto)
@@ -99,6 +105,7 @@ func ingresoProductosNuevos() productos {
 	fmt.Scanln(&cantidadProductoNuevo)
 	fmt.Println(" La cantidad de Producto Nuevo es: ", cantidadProductoNuevo)
 
+	//repasa esto por fa la declaración de struct y como se usan
 	var productoNuevo productos
 	productoNuevo.nombre = nombreProductoNuevo
 	productoNuevo.precio = precioProductoNuevo
@@ -163,13 +170,14 @@ func ingresoActualizacionCantidad() productos {
 func actualizarProductos(productoActualizado) {
 
 	for posicion, productoActualizar := range sliceProducto {
-		if nombreProductoActualizar == productoActualizado.nombre{
-			sliceProducto = map [productoActualizado.nombre]
-			mapProducto = productoActualizar.cantidad
+		if nombreProductoActualizar == productoActualizado.nombre{ 
+			sliceProducto = map [productoActualizado.nombre]  //ya el map esta declarado en la linea 7 ahora debes trabajar con el nombre que seria mapProducto
+			// recuerda que para obtener el valor de un map seria mapProductos[productoActualizado.nombre] porque nuestro map es asi map[string]productos recuerda lo del diccionario
+			mapProducto = productoActualizar.cantidad 
 			
 		} 
 	}
-	sliceProducto = append(sliceProducto, productoActualizado)
+	sliceProducto = append(sliceProducto, productoActualizado)//Para lo que quieres hacer, esto es incorrecto, tienes que hacer un for
 	mapProducto[productoActualizado.nombre] = productoActualizado
 	fmt.Printf("Al producto: %s, Usted adicionó: %d", productoActualizado.nombre, productoActualizado.cantidad)
 	//fmt.Println(sliceProducto, mapProducto)
@@ -179,7 +187,7 @@ func actualizarProductos(productoActualizado) {
 func consultaProductos(seleccionProducto string) {
 
 	for _, producto := range sliceProducto {
-		if producto.nombre == seleccionProducto {
+		if producto.nombre == seleccionProducto {// si ves que aqui comparas producto.nombre que es un string con seleccionProducto que es un string solo que  producto.nombre hace parte de un struct
 			fmt.Println(producto.nombre, producto.cantidad, producto.precio)
 			return
 		}
@@ -188,3 +196,12 @@ func consultaProductos(seleccionProducto string) {
 
 	fmt.Println("Producto inválido")
 }
+
+//En general bien, importante repasar los structs y como funcionan, creo que es una oportunidad de mejora
+// Repasar tambien las funciones, tenemos algunas dudas en los parametros de entrada y de salida, ademas, de no tener claro como se utilizan dentro de la func
+// recuerda que: 
+//"La resiliencia no es la ausencia de dificultades, sino la capacidad de enfrentarlas, superarlas y crecer con cada desafío."
+//"El aprendizaje es un tesoro que seguirá contigo dondequiera que vayas." - Oprah Winfrey
+
+//gracias por dejarme enseñarte, los comentarios los puedes borrar
+//ingeniero Cristian sanchez
