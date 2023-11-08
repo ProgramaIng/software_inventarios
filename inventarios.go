@@ -50,22 +50,22 @@ func inventario() {
 
 func main() {
 
-	inventario()
+	inventario() //Excelente!!
 
 	actividadDiaria()
 
 }
 
 // producto esta estructura detalla cada producto
-//Como dices struct es un objeto, objeto producto que tiene caracteristicas que podemos usar en las funciones
-//estas cayendo en el error de comparar todo un objeto con un nombre es como compar a un Carro completo con una palabra y decir que son lo mismo
+// Como dices struct es un objeto, objeto producto que tiene caracteristicas que podemos usar en las funciones
+// estas cayendo en el error de comparar todo un objeto con un nombre es como compar a un Carro completo con una palabra y decir que son lo mismo
 type producto struct {
 	nombre   string
 	precio   int16
 	cantidad int16
 }
 
-//Esta función esta muy bien
+// Esta función esta muy bien
 func actividadDiaria() {
 	var nombreActividadRealizar string
 	fmt.Println(" Ingresa la actividad que deseas realizar: Crear, Eliminar, Actualizar, Consultar ")
@@ -121,7 +121,7 @@ func ingresoProductos(productoNuevo producto) {
 
 	sliceProducto = append(sliceProducto, productoNuevo)
 	mapProducto[productoNuevo.nombre] = productoNuevo
-	fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
+	fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto) //repetido
 }
 
 // eliminacionProducto esta función elimina producto del inventario
@@ -135,7 +135,7 @@ func eliminacionProducto() {
 		if nombreProductoEliminar == productoEliminar.nombre {
 			sliceProducto = append(sliceProducto[0:posicion], sliceProducto[posicion+1:]...)
 			delete(mapProducto, nombreProductoEliminar)
-			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
+			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto) //repetido
 
 			return
 		}
@@ -172,7 +172,7 @@ func actualizarProductos(productoActualizado producto) {
 			mapProducto[productoActualizado.nombre] = productoActualizado
 			sliceProducto[posicion] = productoActualizado
 			fmt.Printf("El producto: %s, Usted actualizó: %d", productoActualizado.nombre, productoActualizado.cantidad)
-			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
+			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto) //repetido
 		}
 
 	}
