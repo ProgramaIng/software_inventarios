@@ -53,7 +53,7 @@ func main() {
 	inventario()
 
 	actividadDiaria()
-
+	fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto)
 }
 
 type producto struct {
@@ -99,7 +99,6 @@ func ingresoProductosNuevos() producto {
 	fmt.Scanln(&cantidadProductoNuevo)
 	fmt.Println(" La cantidad de Producto Nuevo es: ", cantidadProductoNuevo)
 
-	//repasa esto por fa la declaración de struct y como se usan
 	var productoNuevo producto
 	productoNuevo.nombre = nombreProductoNuevo
 	productoNuevo.precio = precioProductoNuevo
@@ -118,7 +117,7 @@ func ingresoProductos(productoNuevo producto) {
 
 	sliceProducto = append(sliceProducto, productoNuevo)
 	mapProducto[productoNuevo.nombre] = productoNuevo
-	fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto) //repetido
+
 }
 
 // eliminacionProducto esta función elimina producto del inventario
@@ -132,7 +131,6 @@ func eliminacionProducto() {
 		if nombreProductoEliminar == productoEliminar.nombre {
 			sliceProducto = append(sliceProducto[0:posicion], sliceProducto[posicion+1:]...)
 			delete(mapProducto, nombreProductoEliminar)
-			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto) //repetido
 
 			return
 		}
@@ -169,7 +167,7 @@ func actualizarProductos(productoActualizado producto) {
 			mapProducto[productoActualizado.nombre] = productoActualizado
 			sliceProducto[posicion] = productoActualizado
 			fmt.Printf("El producto: %s, Usted actualizó: %d", productoActualizado.nombre, productoActualizado.cantidad)
-			fmt.Printf("Productos Slice: %v, Productos Map: %v", sliceProducto, mapProducto) //repetido
+
 		}
 
 	}
@@ -185,8 +183,8 @@ func consultaProductos() {
 	fmt.Scanln(&nombreProductoConsultar)
 	fmt.Println(" El producto a consultar es: ", nombreProductoConsultar)
 
-	for _, productoActualizar := range sliceProducto {
-		if productoActualizar.nombre == nombreProductoConsultar {
+	for _, productoConsultar := range sliceProducto {
+		if productoConsultar.nombre == nombreProductoConsultar {
 			fmt.Println(mapProducto[nombreProductoConsultar])
 			return
 		}
