@@ -50,15 +50,12 @@ func inventario() {
 
 func main() {
 
-	inventario() //Excelente!!
+	inventario()
 
 	actividadDiaria()
 
 }
 
-// producto esta estructura detalla cada producto
-// Como dices struct es un objeto, objeto producto que tiene caracteristicas que podemos usar en las funciones
-// estas cayendo en el error de comparar todo un objeto con un nombre es como compar a un Carro completo con una palabra y decir que son lo mismo
 type producto struct {
 	nombre   string
 	precio   int16
@@ -198,13 +195,3 @@ func consultaProductos() {
 
 	fmt.Println("Producto inválido")
 }
-
-//En general bien, importante repasar los structs y como funcionan, creo que es una oportunidad de mejora
-// Repasar tambien las funciones, tenemos algunas dudas en los parametros de entrada y de salida, ademas, de no tener claro como se utilizan dentro de la func
-// recuerda que:
-//escribir el flujo primero y luego hacerlo, intentas crearlo en tu mente y al principio es una tareea que nos cuesta, escribir el paso a paso nos va a ayudara entender el flujo
-//"La resiliencia no es la ausencia de dificultades, sino la capacidad de enfrentarlas, superarlas y crecer con cada desafío."
-//"El aprendizaje es un tesoro que seguirá contigo dondequiera que vayas." - Oprah Winfrey
-
-//gracias por dejarme enseñarte, los comentarios los puedes borrar
-//ingeniero Cristian sanchez
